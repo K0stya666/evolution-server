@@ -1,0 +1,25 @@
+package server.domain.entities;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "Invited_users")
+public class InvitedUser {
+    @EmbeddedId
+    private InvitedUserId id;
+
+    @MapsId("inviteId")
+    @ManyToOne
+    @JoinColumn(name = "invite", nullable = false)
+    private Invite invite;
+
+    @MapsId("invitedUserId")
+    @ManyToOne
+    @JoinColumn(name = "invited", nullable = false)
+    private User invitedUser;
+}
