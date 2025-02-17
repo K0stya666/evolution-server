@@ -16,10 +16,10 @@ public class DeckCard {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "card", nullable = false)
+    @JoinColumn(name = "card_id", nullable = false)
     private Card card;
 
     @ManyToOne
-    @JoinColumn(name = "game", nullable = false)
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 }

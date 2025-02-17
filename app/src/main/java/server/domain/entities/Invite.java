@@ -19,10 +19,10 @@ public class Invite {
     private LocalDateTime time;
 
     @ManyToOne
-    @JoinColumn(name = "inviter", nullable = false)
+    @JoinColumn(name = "inviter_id", nullable = false)
     private User inviter;
 
     @ManyToOne
-    @JoinColumn(name = "game", nullable = false)
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 }

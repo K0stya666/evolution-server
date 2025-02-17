@@ -16,10 +16,10 @@ public class AnimalCharacteristic {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "card", nullable = false)
+    @JoinColumn(name = "card_id", nullable = false)
     private Card card;
 
     @ManyToOne
-    @JoinColumn(name = "animal", nullable = false)
+    @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
 }

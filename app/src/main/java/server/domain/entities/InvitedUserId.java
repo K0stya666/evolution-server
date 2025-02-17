@@ -4,8 +4,9 @@ import jakarta.persistence.Embeddable;
 import lombok.*;
 import java.io.Serializable;
 
-@Getter
-@Setter
+//@Getter
+//@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable

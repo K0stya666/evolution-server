@@ -16,10 +16,10 @@ public class DumpCard {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "card", nullable = false)
+    @JoinColumn(name = "card_id", nullable = false)
     private Card card;
 
     @ManyToOne
-    @JoinColumn(name = "player", nullable = false)
+    @JoinColumn(name = "player_id", nullable = false)
     private Player player;
 }

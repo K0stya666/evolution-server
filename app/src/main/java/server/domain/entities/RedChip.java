@@ -15,6 +15,6 @@ public class RedChip {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "game", nullable = false)
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 }

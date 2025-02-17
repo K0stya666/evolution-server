@@ -15,11 +15,11 @@ public class InvitedUser {
 
     @MapsId("inviteId")
     @ManyToOne
-    @JoinColumn(name = "invite", nullable = false)
+    @JoinColumn(name = "invite_id", nullable = false)
     private Invite invite;
 
     @MapsId("invitedUserId")
     @ManyToOne
-    @JoinColumn(name = "invited", nullable = false)
+    @JoinColumn(name = "invited_id", nullable = false)
     private User invitedUser;
 }

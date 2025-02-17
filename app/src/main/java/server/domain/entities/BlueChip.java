@@ -15,6 +15,6 @@ public class BlueChip {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "animal")
+    @JoinColumn(name = "animal_id")
     private Animal animal; // может быть null
 }

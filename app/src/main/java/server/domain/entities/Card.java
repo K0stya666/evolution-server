@@ -15,6 +15,6 @@ public class Card {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "characteristic", referencedColumnName = "name", nullable = false)
+    @JoinColumn(name = "characteristic_id", referencedColumnName = "name", nullable = false)
     private Characteristic characteristic;
 }

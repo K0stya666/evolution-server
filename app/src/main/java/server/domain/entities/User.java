@@ -19,4 +19,9 @@ public class User {
 
     @Column(nullable = false, length = 255)
     private String password;
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 }

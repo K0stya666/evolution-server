@@ -18,12 +18,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+    // WebSocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
     // Драйвер для PostgreSQL
     runtimeOnly 'org.postgresql:postgresql'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // Для шифрования пароля через BCrypt
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
     // Тестирование
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

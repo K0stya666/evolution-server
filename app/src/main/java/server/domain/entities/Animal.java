@@ -16,6 +16,6 @@ public class Animal {
 
     @OneToOne
     @MapsId // PK = cardId = Card.id
-    @JoinColumn(name = "card", nullable = false)
+    @JoinColumn(name = "card_id", nullable = false)
     private Card card;
 }

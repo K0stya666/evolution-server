@@ -16,10 +16,10 @@ public class RedChipAnimal {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "red_chip", nullable = false)
+    @JoinColumn(name = "red_chip_id", nullable = false)
     private RedChip redChip;
 
     @ManyToOne
-    @JoinColumn(name = "animal")
+    @JoinColumn(name = "animal_id")
     private Animal animal; // может быть null
 }

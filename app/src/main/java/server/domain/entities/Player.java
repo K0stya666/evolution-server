@@ -10,8 +10,8 @@ import lombok.*;
 @Entity
 @Table(name = "Players",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"game", "user"}),
-                @UniqueConstraint(columnNames = {"game", "name"})
+                @UniqueConstraint(columnNames = {"game_id", "user_id"}),
+//                @UniqueConstraint(columnNames = {"game", "name"})
         }
 )
 public class Player {
@@ -21,13 +21,13 @@ public class Player {
 
     // Ссылка на игру
     @ManyToOne
-    @JoinColumn(name = "game", nullable = false)
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
     // Ссылка на пользователя
     @ManyToOne
-    @JoinColumn(name = "user", nullable = false)
-    private User user;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User playerUser;
 
     @Column(nullable = false, length = 12)
     private String name;
