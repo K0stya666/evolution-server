@@ -1,4 +1,4 @@
 package server.dto;
 
-public record UserDTO (Long id, String username){
+public record UserDTO (Long id, String login){
 }
