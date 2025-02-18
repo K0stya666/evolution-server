@@ -38,7 +38,6 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .max(Comparator.comparingLong(User::getId))
                 .map(user -> new UserDTO(user.getId(), user.getLogin())).get();
-
     }
 
     public Long getUserIdFromToken() {
@@ -69,12 +68,13 @@ public class UserServiceImpl implements UserService {
             if (checkUser.isEmpty()) {
 
                 User user = User.builder()
+                        .login(regRequest.login())
                         .password(passwordEncoder.encode(regRequest.password()))
                         .build();
                 log.info("Создание нового юзера {}", user.getLogin());
                 User newUser = create(user);
                 String token = jwtUtil.createToken(newUser);
-
+                userRepository.save(newUser);
 
                 return new AuthResponse(token);
             } else return new AuthResponse(null);

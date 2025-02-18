@@ -37,8 +37,7 @@ public class SecurityConfig {
                     return corsConfiguration;
                 }))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/login/**").permitAll()
-                        .requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/**").authenticated());
         http.sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS));
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

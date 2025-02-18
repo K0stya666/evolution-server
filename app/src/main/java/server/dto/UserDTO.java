@@ -1,4 +1,3 @@
 package server.dto;
 
-public record UserDTO (Long id, String login){
-}
+public record UserDTO (Long id, String login){}
