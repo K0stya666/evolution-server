@@ -1,4 +1,4 @@
-package server.services;
+package server.services.interfaces;
 
 import server.dto.UserDTO;
 import server.entities.User;

@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import server.enums.Stage;
 
+@Builder
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,4 +23,13 @@ public class Game {
 
     @Column(name = "dice_number")
     private Integer diceNumber;
+
+    @Transient
+    private int maxPlayers;
+
+    @Transient
+    private int currentPlayers;
+
+    @Transient
+    private String status;
 }
