@@ -3,6 +3,7 @@ package server.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -11,7 +12,6 @@ import lombok.*;
 @Table(name = "Players",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"game_id", "user_id"}),
-//                @UniqueConstraint(columnNames = {"game", "name"})
         }
 )
 public class Player {
