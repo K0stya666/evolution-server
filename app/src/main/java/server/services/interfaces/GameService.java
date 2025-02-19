@@ -6,9 +6,10 @@ import server.entities.Game;
 import server.enums.Stage;
 import server.repositories.GameRepository;
 import java.util.List;
+import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
 public interface GameService {
-
+    List<Game> getAvailableGames();
+    Game createGame(int maxPlayers, Long creatorUserId);
+    Optional<Game> joinGame(Long gameId);
 }

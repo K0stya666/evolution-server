@@ -5,8 +5,8 @@ import server.entities.User;
 import server.network.*;
 
 public interface UserService {
-    User create(User user);
-    UserDTO getCurrentUser();
+    User createUser(User user);
+//    UserDTO getCurrentUser();
     AuthResponse login(AuthRequest authRequest);
     AuthResponse register(AuthRequest authRequest);
 }

@@ -12,6 +12,7 @@ import server.entities.User;
 import server.network.AuthResponse;
 import server.network.AuthRequest;
 import server.repositories.UserRepository;
+import server.services.interfaces.UserService;
 import server.utils.JwtUtil;
 import java.util.Comparator;
 import java.util.Optional;
@@ -26,25 +27,25 @@ public class UserServiceImpl implements UserService {
     private final JwtUtil jwtUtil;
 
     @Override
-    public User create(User user) {
+    public User createUser(User user) {
         User newUser = userRepository.save(user);
         userRepository.flush();
         return newUser;
     }
 
-    @Override
-    public UserDTO getCurrentUser() {
-        return userRepository.findById(getUserIdFromToken())
-                .stream()
-                .max(Comparator.comparingLong(User::getId))
-                .map(user -> new UserDTO(user.getId(), user.getLogin())).get();
-    }
+//    @Override
+//    public UserDTO getCurrentUser() {
+//        return userRepository.findById(getUserIdFromToken())
+//                .stream()
+//                .max(Comparator.comparingLong(User::getId))
+//                .map(user -> new UserDTO(user.getId(), user.getLogin())).get();
+//    }
 
-    public Long getUserIdFromToken() {
-        Claims credentials = (Claims) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-        log.info("user id {}", credentials.get("id"));
-        return Long.parseLong(credentials.get("id").toString());
-    }
+//    public Long getUserIdFromToken() {
+//        Claims credentials = (Claims) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+//        log.info("user id {}", credentials.get("id"));
+//        return Long.parseLong(credentials.get("id").toString());
+//    }
 
     @Override
     public AuthResponse login(AuthRequest logRequest) {
@@ -72,7 +73,7 @@ public class UserServiceImpl implements UserService {
                         .password(passwordEncoder.encode(regRequest.password()))
                         .build();
                 log.info("Создание нового юзера {}", user.getLogin());
-                User newUser = create(user);
+                User newUser = createUser(user);
                 String token = jwtUtil.createToken(newUser);
                 userRepository.save(newUser);
 

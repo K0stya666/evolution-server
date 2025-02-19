@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import server.network.AuthRequest;
 import server.network.AuthResponse;
-import server.services.UserService;
+import server.services.interfaces.UserService;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @Slf4j
