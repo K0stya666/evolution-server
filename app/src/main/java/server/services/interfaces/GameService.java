@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface GameService {
     List<Game> getAvailableGames();
     Game createGame(int maxPlayers, Long creatorUserId);
-    Optional<Game> joinGame(Long gameId);
+    Optional<Game> joinGame(Long gameId, Long userId);
 }

@@ -4,8 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.entities.Game;
-import server.enums.Stage;
 import server.services.interfaces.GameService;
+import server.services.interfaces.UserService;
+
 import java.util.List;
 
 @RestController
@@ -14,21 +15,17 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173") // CORS для разработки
 public class GameController {
     private final GameService gameService;
+    private final UserService userService;
 
-    public GameController(GameService gameService) {
-        this.gameService = gameService;
-    }
-
-    @GetMapping
+    @GetMapping("/availableGames")
     public ResponseEntity<List<Game>> getAvailableGames() {
         return ResponseEntity.ok(gameService.getAvailableGames());
     }
 
     // Создаем новую игру с выбранным количеством игроков
-    @PostMapping
+    @PostMapping("/createGame")
     public ResponseEntity<Game> createGame(@RequestParam int maxPlayers) {
-        // В реальном проекте получаем ID пользователя из SecurityContext
-        Long creatorUserId = 1L; // Для примера
+        Long creatorUserId = userService.getUserIdFromToken(); // Для примера
         Game game = gameService.createGame(maxPlayers, creatorUserId);
         return ResponseEntity.ok(game);
     }
@@ -36,7 +33,8 @@ public class GameController {
     // Присоединяемся к игре
     @PostMapping("/{gameId}/join")
     public ResponseEntity<Game> joinGame(@PathVariable Long gameId) {
-        return gameService.joinGame(gameId)
+        Long userId = userService.getUserIdFromToken();
+        return gameService.joinGame(gameId, userId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.badRequest().build());
     }

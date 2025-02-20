@@ -30,7 +30,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final ObjectMapper mapper;
 
     @Override
-    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws IOException, ServletException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+                                    @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain filterChain) throws IOException, ServletException {
         log.info("Зашёл в doFilterInternal");
         Map<String, Object> error = new HashMap<>();
         try {
@@ -40,6 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (token == null) {
                 log.info("token - null");
                 filterChain.doFilter(request, response);
+//                response.sendRedirect("auth/login");
                 return;
             }
 

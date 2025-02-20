@@ -41,11 +41,12 @@ public class UserServiceImpl implements UserService {
 //                .map(user -> new UserDTO(user.getId(), user.getLogin())).get();
 //    }
 
-//    public Long getUserIdFromToken() {
-//        Claims credentials = (Claims) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-//        log.info("user id {}", credentials.get("id"));
-//        return Long.parseLong(credentials.get("id").toString());
-//    }
+    @Override
+    public Long getUserIdFromToken() {
+        Claims credentials = (Claims) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+        log.info("user id {}", credentials.get("id"));
+        return Long.parseLong(credentials.get("id").toString());
+    }
 
     @Override
     public AuthResponse login(AuthRequest logRequest) {

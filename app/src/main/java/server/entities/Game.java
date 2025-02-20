@@ -3,6 +3,7 @@ package server.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import server.enums.Stage;
+import server.enums.Status;
 
 @Builder
 @Getter
@@ -24,12 +25,19 @@ public class Game {
     @Column(name = "dice_number")
     private Integer diceNumber;
 
-    @Transient
+    @Column(name = "creator_id", nullable = false)
+    private Long creatorId;
+
+    @Column(name = "max_players", nullable = false)
     private int maxPlayers;
 
-    @Transient
+    @Column(name = "current_players", nullable = false)
     private int currentPlayers;
 
-    @Transient
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
+
+//    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private List<Player> players = new ArrayList<>();
 }
