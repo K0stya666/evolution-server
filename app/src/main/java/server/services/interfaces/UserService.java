@@ -1,6 +1,5 @@
 package server.services.interfaces;
 
-import server.dto.UserDTO;
 import server.entities.User;
 import server.network.*;
 

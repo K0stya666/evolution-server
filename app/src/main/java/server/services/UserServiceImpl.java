@@ -7,14 +7,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import server.dto.UserDTO;
 import server.entities.User;
 import server.network.AuthResponse;
 import server.network.AuthRequest;
 import server.repositories.UserRepository;
 import server.services.interfaces.UserService;
 import server.utils.JwtUtil;
-import java.util.Comparator;
 import java.util.Optional;
 
 @Slf4j
