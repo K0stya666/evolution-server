@@ -10,16 +10,17 @@ import lombok.*;
 @Entity
 @Table(name = "Deck_cards")
 public class DeckCard {
+
     @Id
     @Column(name = "card")
     private Long cardId;
 
-    @OneToOne
+    @ManyToOne
     @MapsId
     @JoinColumn(name = "card_id", nullable = false)
     private Card card;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 }
