@@ -3,6 +3,9 @@ package server.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import server.cards.Battle;
+import server.cards.Card;
+import server.cards.Deck;
 import server.entities.Game;
 import server.entities.Player;
 import server.services.interfaces.GameService;
@@ -45,13 +48,20 @@ public class GameController {
         return ResponseEntity.ok(players);
     }
 
+    @GetMapping("/{gameId}/getCard")
+    public ResponseEntity<Card> getCard(@PathVariable Long gameId) {
+        Battle BIBCHICK = gameService.getBattle(gameId);
+        Card card = BIBCHICK.getDeck().takeCard();
+        return ResponseEntity.ok(card);
+    }
+
 //    @GetMapping("/{id}")
-//    public Game getGame(@PathVariable Long id) {
+//    public Battle getGame(@PathVariable Long id) {
 //        return gameService.getGame(id);
 //    }
 
 //    @PutMapping("/{id}/stage")
-//    public Game updateGameStage(@PathVariable Long id,
+//    public Battle updateGameStage(@PathVariable Long id,
 //                                @RequestParam Stage newStage) {
 //        return gameService.updateGameStage(id, newStage);
 //    }

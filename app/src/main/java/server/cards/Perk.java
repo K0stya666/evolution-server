@@ -1,6 +1,6 @@
-package server.entities.my_shit.characteristics;
+package server.cards;
 
-public enum CharacteristicsEnum {
+public enum Perk {
     SWIMMING,
     RUNNING,
     MIMICRY,
@@ -13,11 +13,12 @@ public enum CharacteristicsEnum {
      */
     COMMUNISM,
     GRAZING,
-    HIGH_BODY_WEIGHT,
+    BIG,
     HIBERNATION_ABILITY,
     POISONOUS,
     COOPERATION,
     BURROWING,
     CAMOUFLAGE,
-    SHARP_VISION
+    SHARP_VISION,
+    PARASITE
 }

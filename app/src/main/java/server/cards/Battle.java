@@ -1,18 +1,21 @@
-package server.entities.my_shit;
+package server.cards;
 
-import server.entities.*;
+import lombok.Getter;
+import server.entities.Player;
+
 import java.util.LinkedList;
-import java.util.List;
 
-public class Game {
-    LinkedList<Card> deckCard;
-    {
-        deckCard = new LinkedList<>();
-        deckCard.add(new Card()); // здесь накидываем
-    }
+public class Battle {
+    @Getter
+    private Deck deck;
 
 
     LinkedList<Player> players;
+
+    public Battle() {
+        this.deck = new Deck();
+    }
+
     public void addPlayer(Player player) {
         players.add(player);
     }
@@ -24,7 +27,7 @@ public class Game {
     private void giveCards() {
         for (int i = 0; i < 6; i++) {
             for (var p : players) {
-                var newCard = deckCard.pop();
+                var newCard = deck.takeCard();
                 var cards = p.getCards();
                 cards.add(newCard);
                 p.setCards(cards);
@@ -97,13 +100,14 @@ public class Game {
         }
     }
 
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.addPlayer(new Player(1L, "Aleshka"));
-        game.addPlayer(new Player(2L, "Kostya666"));
-
-        game.startGame();
-    }
+//    public static void main(String[] args) {
+//        Deck deck = new Deck();
+//        Battle game = new Battle(deck);
+////        game.addPlayer(new Player(1L, "Aleshka"));
+////        game.addPlayer(new Player(2L, "Kostya666"));
+//
+//        game.startGame();
+//    }
 
 
 

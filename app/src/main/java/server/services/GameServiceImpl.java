@@ -3,6 +3,9 @@ package server.services;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import server.cards.Battle;
+import server.cards.Card;
+import server.cards.Deck;
 import server.entities.Game;
 import server.entities.Player;
 import server.entities.User;
@@ -82,5 +85,10 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<Player> getPlayers(Long gameId) {
         return playerRepository.findByGameId(gameId);
+    }
+
+    @Override
+    public Battle getBattle(Long gameId) {
+        return gameRepository.findById(gameId).get().getBattle(); // TODO а что если игры нет в бд? Молимся
     }
 }

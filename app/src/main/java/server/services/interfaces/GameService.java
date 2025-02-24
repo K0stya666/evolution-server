@@ -1,11 +1,11 @@
 package server.services.interfaces;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import server.cards.Battle;
+import server.cards.Card;
+import server.cards.Deck;
 import server.entities.Game;
 import server.entities.Player;
-import server.enums.Stage;
-import server.repositories.GameRepository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +14,5 @@ public interface GameService {
     Game createGame(int maxPlayers, Long creatorUserId);
     Optional<Game> joinGame(Long gameId, Long userId);
     List<Player> getPlayers(Long gameId);
+    Battle getBattle(Long gameId);
 }

@@ -2,6 +2,7 @@ package server.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import server.cards.Battle;
 import server.enums.Stage;
 import server.enums.Status;
 
@@ -34,4 +35,10 @@ public class Game {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status;
+
+
+    @Getter
+    @Transient
+    private Battle battle = new Battle();
+
 }

@@ -1,11 +1,10 @@
-package server.entities.my_shit.characteristics;
+package server.cards;
 
 /**
  * Будет указывать, какой бонусный перк висит на карте – хищник, паразит или жир
  */
-public enum StatusCard {
-    CARNIVARIOUS,
-    PARASITE,
-    FAT_TISSUE,
+public enum Type {
+    PREDATOR,
+    FAT,
     NONE
 }
