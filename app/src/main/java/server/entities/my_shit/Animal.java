@@ -1,6 +1,6 @@
 package server.entities.my_shit;
 
-import server.entities.my_shit.characteristics.Characteristic;
+import server.entities.Characteristic;
 
 //@Getter
 //@Setter

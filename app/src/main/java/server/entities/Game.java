@@ -22,9 +22,6 @@ public class Game {
     @Column(nullable = false)
     private Stage stage;
 
-    @Column(name = "dice_number")
-    private Integer diceNumber;
-
     @Column(name = "creator_id", nullable = false)
     private Long creatorId;
 
@@ -37,7 +34,4 @@ public class Game {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status;
-
-//    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private List<Player> players = new ArrayList<>();
 }

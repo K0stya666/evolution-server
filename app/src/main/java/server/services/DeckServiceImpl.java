@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.entities.DeckCard;
+import server.entities.ochko.DeckCard;
 import server.repositories.DeckCardRepository;
 import server.services.interfaces.DeckService;
 

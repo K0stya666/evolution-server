@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.entities.Game;
+import server.entities.Player;
 import server.services.interfaces.GameService;
 import server.services.interfaces.UserService;
-
 import java.util.List;
 
 @RestController
@@ -37,6 +37,12 @@ public class GameController {
         return gameService.joinGame(gameId, userId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.badRequest().build());
+    }
+
+    @GetMapping("/{gameId}/getPlayers")
+    public ResponseEntity<List<Player>> getPlayers(@PathVariable Long gameId) {
+        List<Player> players = gameService.getPlayers(gameId);
+        return ResponseEntity.ok(players);
     }
 
 //    @GetMapping("/{id}")

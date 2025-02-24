@@ -3,7 +3,7 @@ package server.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.entities.DeckCard;
+import server.entities.ochko.DeckCard;
 import server.services.interfaces.DeckService;
 import java.util.List;
 

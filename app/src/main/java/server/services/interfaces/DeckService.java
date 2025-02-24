@@ -1,6 +1,6 @@
 package server.services.interfaces;
 
-import server.entities.DeckCard;
+import server.entities.ochko.DeckCard;
 
 import java.util.List;
 

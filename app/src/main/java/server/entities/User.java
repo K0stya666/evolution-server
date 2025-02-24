@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Users")
 public class User {
@@ -18,11 +19,6 @@ public class User {
     @Column(nullable = false, unique = true, length = 30)
     private String login;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String password;
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
 }

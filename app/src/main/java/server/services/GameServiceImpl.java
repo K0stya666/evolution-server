@@ -78,4 +78,9 @@ public class GameServiceImpl implements GameService {
         }
         return Optional.empty();
     }
+
+    @Override
+    public List<Player> getPlayers(Long gameId) {
+        return playerRepository.findByGameId(gameId);
+    }
 }

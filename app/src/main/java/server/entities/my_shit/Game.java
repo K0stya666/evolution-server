@@ -1,6 +1,8 @@
 package server.entities.my_shit;
 
+import server.entities.*;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Game {
     LinkedList<Card> deckCard;
@@ -20,13 +22,22 @@ public class Game {
     }
 
     private void giveCards() {
-
+        for (int i = 0; i < 6; i++) {
+            for (var p : players) {
+                var newCard = deckCard.pop();
+                var cards = p.getCards();
+                cards.add(newCard);
+                p.setCards(cards);
+            }
+        }
     }
 
     private void developmentPhase() {
         for (Player player : players) {
             // каждый игрок выбирает карту, что-то мутит
             // пока не закончатся карты или не захочет ходить дальше
+
+
         }
     }
 
@@ -59,7 +70,6 @@ public class Game {
         giveCards();
 
         // выбираем, кто первый
-
         boolean ended = false;
 
         while (!ended) {

@@ -3,6 +3,8 @@ package server.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Builder
 @Getter
 @Setter
@@ -19,16 +21,17 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Ссылка на игру
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
-    // Ссылка на пользователя
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User playerUser;
 
     @Column(nullable = false, length = 12)
     private String name;
+
+    @Transient
+    private List<Card> cards;
 }
