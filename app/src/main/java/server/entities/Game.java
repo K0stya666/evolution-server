@@ -37,8 +37,8 @@ public class Game {
     private Status status;
 
 
-    @Getter
-    @Transient
-    private Battle battle = new Battle();
+//    @Getter
+//    @Transient
+//    private Battle battle = new Battle();
 
 }

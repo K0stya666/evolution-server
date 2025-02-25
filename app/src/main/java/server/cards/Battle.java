@@ -1,10 +1,12 @@
 package server.cards;
 
 import lombok.Getter;
+import org.springframework.stereotype.Service;
 import server.entities.Player;
 
 import java.util.LinkedList;
 
+//@Service
 public class Battle {
     @Getter
     private Deck deck;

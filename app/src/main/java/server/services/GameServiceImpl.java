@@ -25,8 +25,10 @@ import static server.enums.Status.WAITING;
 public class GameServiceImpl implements GameService {
     private final GameRepository gameRepository;
     private final PlayerRepository playerRepository;
-    private final PlayerServiceImpl playerService;
     private final UserRepository userRepository;
+
+    private final PlayerServiceImpl playerService;
+    private final DeckServiceImpl deckService;
 
     // Получаем список игр, находящихся в ожидании игроков
     @Override
@@ -40,6 +42,8 @@ public class GameServiceImpl implements GameService {
         if (maxPlayers < 2 || maxPlayers > 4) {
             throw new IllegalArgumentException("Количество игроков должно быть от 2 до 4");
         }
+
+        deckService.shuffleDeck();
 
         Game newGame = Game.builder()
                 .stage(GROWTH)
@@ -90,8 +94,8 @@ public class GameServiceImpl implements GameService {
         return playerRepository.findByGameId(gameId);
     }
 
-//    @Override
-//    public Battle getBattle(Long gameId) {
-//        return gameRepository.findById(gameId).get().getBattle(); // TODO а что если игры нет в бд? Молимся
-//    }
+    @Override
+    public Deck getDeck(Long gameId) {
+        return deckService.getDeck();
+    }
 }

@@ -3,7 +3,6 @@ package server.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import server.cards.Card;
-
 import java.util.List;
 
 @Builder
