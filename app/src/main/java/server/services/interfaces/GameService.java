@@ -14,5 +14,5 @@ public interface GameService {
     Game createGame(int maxPlayers, Long creatorUserId);
     Optional<Game> joinGame(Long gameId, Long userId);
     List<Player> getPlayers(Long gameId);
-    Battle getBattle(Long gameId);
+//    Battle getBattle(Long gameId);
 }

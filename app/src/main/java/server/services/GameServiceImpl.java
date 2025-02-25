@@ -65,19 +65,22 @@ public class GameServiceImpl implements GameService {
     @Override
     public Optional<Game> joinGame(Long gameId, Long userId) {
         Optional<Game> gameOpt = gameRepository.findById(gameId);
-        if (gameOpt.isPresent()) {
-            Game game = gameOpt.get();
-            // Можно присоединиться, если игра ожидает игроков и еще не заполнена
-            if (game.getCurrentPlayers() < game.getMaxPlayers() && game.getStatus().equals(WAITING)) {
-                game.setCurrentPlayers(game.getCurrentPlayers() + 1);
-                // Если игроки заполнили игру – меняем статус
-                if (game.getCurrentPlayers() == game.getMaxPlayers()) {
-                    game.setStatus(STARTED);
-                }
-                gameRepository.save(game);
-                log.info("Пользователь {} присоединился к игре с id {}", userId, gameId);
-                return Optional.of(game);
+        User user = userRepository.findById(userId).get();
+
+        playerService.createPlayer(gameOpt.get(), user);
+
+
+        Game game = gameOpt.get();
+        // Можно присоединиться, если игра ожидает игроков и еще не заполнена
+        if (game.getCurrentPlayers() < game.getMaxPlayers() && game.getStatus().equals(WAITING)) {
+            game.setCurrentPlayers(game.getCurrentPlayers() + 1);
+            // Если игроки заполнили игру – меняем статус
+            if (game.getCurrentPlayers() == game.getMaxPlayers()) {
+                game.setStatus(STARTED);
             }
+            gameRepository.save(game);
+            log.info("Пользователь {} присоединился к игре с id {}", userId, gameId);
+            return Optional.of(game);
         }
         return Optional.empty();
     }
@@ -87,8 +90,8 @@ public class GameServiceImpl implements GameService {
         return playerRepository.findByGameId(gameId);
     }
 
-    @Override
-    public Battle getBattle(Long gameId) {
-        return gameRepository.findById(gameId).get().getBattle(); // TODO а что если игры нет в бд? Молимся
-    }
+//    @Override
+//    public Battle getBattle(Long gameId) {
+//        return gameRepository.findById(gameId).get().getBattle(); // TODO а что если игры нет в бд? Молимся
+//    }
 }

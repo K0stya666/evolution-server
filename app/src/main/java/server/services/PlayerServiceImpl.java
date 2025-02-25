@@ -8,18 +8,12 @@ import server.entities.Player;
 import server.entities.User;
 import server.repositories.PlayerRepository;
 import server.services.interfaces.PlayerService;
-import java.util.List;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class PlayerServiceImpl implements PlayerService {
     private final PlayerRepository playerRepository;
-
-    @Override
-    public List<Player> getPlayers(Long gameId) {
-        return playerRepository.findByGameId(gameId);
-    }
 
     @Override
     public Player createPlayer(Game game, User playerUser) {
