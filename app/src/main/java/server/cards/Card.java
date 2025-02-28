@@ -4,10 +4,10 @@ import lombok.*;
 
 @Data
 public class Card {
-    private final Perk characteristic;
+    private final Condition condition;
 
     /**
      * Это для указания одного из трёх перков - хищник, паразит, жирдяй
      */
-    private final Type type;
+    private final Perk perk;
 }

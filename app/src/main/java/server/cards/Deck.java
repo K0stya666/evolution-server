@@ -8,20 +8,20 @@ public class Deck {
 
     public Deck() {
         cards = new LinkedList<>();
-        for (Perk perk : Perk.values()) {
-            if (!perk.equals(Perk.PARASITE) && !perk.equals(Perk.COMMUNISM) && !perk.equals(Perk.BIG)) {
-                Card card = new Card(perk, Type.NONE);
+        for (Condition condition : Condition.values()) {
+            if (!condition.equals(Condition.PARASITE) && !condition.equals(Condition.COMMUNISM) && !condition.equals(Condition.BIG)) {
+                Card card = new Card(condition, Perk.NONE);
 
                 add4(card);
-                if (perk.equals(Perk.SWIMMING)) {
+                if (condition.equals(Condition.SWIMMING)) {
                     add4(card);
                 }
             }
             else {
-                Card card = new Card(perk, Type.PREDATOR);
+                Card card = new Card(condition, Perk.PREDATOR);
                 add4(card);
 
-                card = new Card(perk, Type.FAT);
+                card = new Card(condition, Perk.FAT);
                 add4(card);
             }
         }

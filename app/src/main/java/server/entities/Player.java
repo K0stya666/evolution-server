@@ -1,9 +1,12 @@
 package server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import server.cards.Card;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Builder
@@ -34,5 +37,30 @@ public class Player {
     private String name;
 
     @Transient
+    @JsonIgnore
     private List<Card> cards;
+
+    @Transient
+    @JsonIgnore
+    private List<Animal> animals;
+
+
+
+    /**
+     * Инициализация transient-полей после загрузки/сохранения сущности.
+     */
+    @PostLoad
+    @PostPersist
+    @PostUpdate
+    public void initPlayerLogic() {
+        if (cards == null)
+            cards = new LinkedList<>();
+        if (animals == null)
+            animals = new LinkedList<>();
+    }
+
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
 }

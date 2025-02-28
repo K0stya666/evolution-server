@@ -1,17 +1,22 @@
 package server.controllers;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.cards.Battle;
 import server.cards.Card;
-import server.cards.Deck;
+import server.cards.Condition;
+import server.cards.Perk;
 import server.entities.Game;
 import server.entities.Player;
 import server.services.interfaces.GameService;
 import server.services.interfaces.UserService;
+
+import java.lang.reflect.Type;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/games")
 @RequiredArgsConstructor
@@ -54,6 +59,20 @@ public class GameController {
         Card card = BIBCHICK.getDeck().takeCard();
         return ResponseEntity.ok(card);
     }
+
+
+    @GetMapping("/{gameId}/getCards")
+    public ResponseEntity<List<Card>> getCards(@PathVariable Long gameId) {
+        Battle bibchick = gameService.getBattle(gameId);
+//        bibchick.giveCards();
+//        List<Card> cards = bibchick.getPlayers().get(0).getCards();
+
+        List<Card> cards = List.of(new Card(Condition.BIG, Perk.FAT), new Card(Condition.COMMUNISM, Perk.NONE), new Card(Condition.BIG, Perk.PREDATOR));
+        log.info("карты: {}", cards);
+        log.info("Игроки: {}", bibchick.getPlayers());
+        return ResponseEntity.ok(cards);
+    }
+
 
 //    @GetMapping("/{id}")
 //    public Battle getGame(@PathVariable Long id) {

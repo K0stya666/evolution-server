@@ -1,10 +1,14 @@
 package server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import server.cards.Battle;
+import server.cards.Deck;
 import server.enums.Stage;
 import server.enums.Status;
+
+import java.util.LinkedList;
 
 @Builder
 @Getter
@@ -36,9 +40,31 @@ public class Game {
     @Column(nullable = false)
     private Status status;
 
-
-    @Getter
     @Transient
-    private Battle battle = new Battle();
+    @JsonIgnore
+    private Battle battle;
+
+    /**
+     * Инициализация transient-полей после загрузки/сохранения сущности.
+     */
+    @PostLoad
+    @PostPersist
+    @PostUpdate
+    public void initGameLogic() {
+        if (battle == null) {
+            battle = new Battle();
+//            battle.startGame();
+        }
+    }
+
+    /**
+     * Добавление игрока в игру
+     */
+    public void addPlayer(Player player) {
+        battle.addPlayer(player);
+        currentPlayers = battle.countPlayers();
+    }
+
+
 
 }

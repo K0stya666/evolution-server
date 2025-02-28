@@ -5,32 +5,32 @@ import server.entities.Player;
 
 import java.util.LinkedList;
 
+@Getter
 public class Battle {
-    @Getter
-    private Deck deck;
+    private final Deck deck;
 
-
-    LinkedList<Player> players;
+    private final LinkedList<Player> players;
 
     public Battle() {
         this.deck = new Deck();
+        this.players = new LinkedList<>();
     }
 
     public void addPlayer(Player player) {
         players.add(player);
     }
-
-    private int rollDice() {
-        return 0;
+    public int countPlayers() {
+        return players.size();
     }
 
-    private void giveCards() {
+    private int rollDice() {
+        return (int) (Math.random() * 6) + 1;
+    }
+
+    public void giveCards() {
         for (int i = 0; i < 6; i++) {
             for (var p : players) {
-                var newCard = deck.takeCard();
-                var cards = p.getCards();
-                cards.add(newCard);
-                p.setCards(cards);
+                p.addCard(deck.takeCard());
             }
         }
     }
@@ -64,7 +64,12 @@ public class Battle {
      * Дораздача кард в конце хода
      */
     private void addCards() {
-
+        for (Player player : players) {
+            int countCards = player.getAnimals().size() + 1;
+            for (int i = 0; i < countCards; i++) {
+                player.addCard(deck.takeCard());
+            }
+        }
     }
 
 
@@ -88,9 +93,9 @@ public class Battle {
             if (players.size() == 2)
                 countFood = rollDice() + 2;
             else if (players.size() == 3)
-                countFood = rollDice();
+                countFood = rollDice() + rollDice();
             else
-                countFood = rollDice() + 2;
+                countFood = rollDice() + rollDice() + 2;
 
 
             feedPhase(countFood);
