@@ -13,6 +13,8 @@ import server.models.Card;
 import server.models.Deck;
 import server.services.interfaces.GameService;
 import server.services.interfaces.UserService;
+
+import java.security.Principal;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,16 +24,24 @@ public class GameWebSocketController {
     private final UserService userService;
 
     @MessageMapping("/games/createGame")
-    @SendTo("/topic/games") // Рассылаем созданную игру всем подписчикам
-    public Game createGame(@Payload int maxPlayers) {
-        Long creatorUserId = userService.getUserIdFromToken(); // Получение id пользователя из токена (можно извлечь из заголовков)
-        return gameService.createGame(maxPlayers, creatorUserId);
+    @SendTo("/topic/games")
+    public Game createGame(@Payload int maxPlayers, Principal principal) {
+        // principal.getName() is what you set in StompChannelInterceptor
+        if ("anonymous".equals(principal.getName()))
+            throw new RuntimeException("User must be logged in to create game");
+
+        Long userId = Long.valueOf(principal.getName());
+        return gameService.createGame(maxPlayers, userId);
     }
+
 
     @MessageMapping("/games/joinGame")
     @SendTo("/topic/games")
-    public Game joinGame(@Payload Long gameId) {
-        Long userId = userService.getUserIdFromToken();
+    public Game joinGame(@Payload Long gameId, Principal principal) {
+        if ("anonymous".equals(principal.getName()))
+            throw new RuntimeException("User must be logged in to create game");
+
+        Long userId = Long.valueOf(principal.getName());
         return gameService.joinGame(gameId, userId)
                 .orElseThrow(() -> new RuntimeException("Не удалось присоединиться к игре"));
     }

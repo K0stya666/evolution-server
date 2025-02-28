@@ -17,15 +17,15 @@ public class AuthWebSocketController {
 
     @MessageMapping("/auth/register")
     @SendToUser("/queue/auth")
-    public AuthResponse register(@Payload AuthRequest authRequest) {
-        log.info("Пришёл запрос на register");
+    public AuthResponse register(AuthRequest authRequest) {
+        log.info("STOMP register request for login {}", authRequest.login());
         return userService.register(authRequest);
     }
 
     @MessageMapping("/auth/login")
     @SendToUser("/queue/auth")
-    public AuthResponse login(@Payload AuthRequest authRequest) {
-        log.info("Пришёл запрос на login");
+    public AuthResponse login(AuthRequest authRequest) {
+        log.info("STOMP login request for login {}", authRequest.login());
         return userService.login(authRequest);
     }
 }

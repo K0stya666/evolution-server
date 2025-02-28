@@ -58,7 +58,7 @@ public class JwtUtil {
         return (Jwts.parser().setSigningKey(getKey()).build()).parseClaimsJws(token).getBody();
     }
 
-    public boolean isTokenValid(Claims claims) throws AuthenticationException {
+    public boolean isTokenValid(Claims claims) {
         return claims.getExpiration().after(new Date());
     }
 
