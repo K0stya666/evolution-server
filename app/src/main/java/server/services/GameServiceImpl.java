@@ -3,9 +3,7 @@ package server.services;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import server.cards.Battle;
-import server.cards.Card;
-import server.cards.Deck;
+import server.models.Deck;
 import server.entities.Game;
 import server.entities.Player;
 import server.entities.User;
@@ -95,7 +93,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Deck getDeck(Long gameId) {
+    public Deck getDeck() {
         return deckService.getDeck();
     }
 }

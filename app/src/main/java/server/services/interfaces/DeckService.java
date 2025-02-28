@@ -1,6 +1,6 @@
 package server.services.interfaces;
 
-import server.cards.Card;
+import server.models.Card;
 
 public interface DeckService {
     Card drawCard();

@@ -3,7 +3,7 @@ package server.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.cards.Deck;
+import server.models.Deck;
 import server.entities.Game;
 import server.entities.Player;
 import server.services.interfaces.GameService;
@@ -46,8 +46,10 @@ public class GameController {
         return ResponseEntity.ok(players);
     }
 
-    @GetMapping("/{gameId}/getDeck")
-    public ResponseEntity<Deck> getDeck(@PathVariable Long gameId) {}
+    @GetMapping("/getDeck")
+    public ResponseEntity<Deck> getDeck() {
+        return ResponseEntity.ok(gameService.getDeck());
+    }
 
 //    @GetMapping("/{gameId}/getCard")
 //    public ResponseEntity<Card> getCard(@PathVariable Long gameId) {

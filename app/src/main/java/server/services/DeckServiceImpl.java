@@ -2,8 +2,8 @@ package server.services;
 
 import lombok.Data;
 import org.springframework.stereotype.Service;
-import server.cards.Card;
-import server.cards.Deck;
+import server.models.Card;
+import server.models.Deck;
 import server.services.interfaces.DeckService;
 
 @Data

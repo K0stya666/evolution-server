@@ -1,6 +1,8 @@
-package server.cards;
+package server.models;
 
 import lombok.*;
+import server.enums.Perk;
+import server.enums.Type;
 
 @Data
 public class Card {

@@ -1,8 +1,8 @@
 package server.cards;
 
 import lombok.Getter;
-import org.springframework.stereotype.Service;
 import server.entities.Player;
+import server.models.Deck;
 
 import java.util.LinkedList;
 

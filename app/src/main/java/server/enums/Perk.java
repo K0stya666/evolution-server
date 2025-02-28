@@ -1,4 +1,4 @@
-package server.cards;
+package server.enums;
 
 public enum Perk {
     SWIMMING,

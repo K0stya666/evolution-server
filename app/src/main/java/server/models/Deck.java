@@ -1,4 +1,7 @@
-package server.cards;
+package server.models;
+
+import server.enums.Perk;
+import server.enums.Type;
 
 import java.util.Collections;
 import java.util.LinkedList;
