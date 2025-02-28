@@ -1,5 +1,6 @@
 package server.services.interfaces;
 
+import server.cards.Battle;
 import server.models.Deck;
 import server.entities.Game;
 import server.entities.Player;
@@ -13,5 +14,5 @@ public interface GameService {
     Optional<Game> joinGame(Long gameId, Long userId);
     List<Player> getPlayers(Long gameId);
     Deck getDeck();
-//    Battle getBattle(Long gameId);
+    Battle getBattle(Long gameId);
 }

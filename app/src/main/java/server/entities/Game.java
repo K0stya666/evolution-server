@@ -1,5 +1,6 @@
 package server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import server.cards.Battle;
@@ -37,8 +38,18 @@ public class Game {
     private Status status;
 
 
-//    @Getter
-//    @Transient
-//    private Battle battle = new Battle();
+    @Getter
+    @Transient
+    @JsonIgnore
+    private Battle battle;
+
+    @PostLoad
+    @PostPersist
+    @PostUpdate
+    private void initBattle() {
+        if (battle == null) {
+            battle = new Battle();
+        }
+    }
 
 }

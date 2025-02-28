@@ -1,21 +1,20 @@
 package server.cards;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import server.entities.Player;
 import server.models.Deck;
 
 import java.util.LinkedList;
 
-//@Service
+@Getter
 public class Battle {
-    @Getter
     private Deck deck;
-
-
-    LinkedList<Player> players;
+    private LinkedList<Player> players;
 
     public Battle() {
         this.deck = new Deck();
+        this.players = new LinkedList<>();
     }
 
     public void addPlayer(Player player) {
@@ -23,16 +22,17 @@ public class Battle {
     }
 
     private int rollDice() {
-        return 0;
+        return (int) (Math.random() * 6) + 1;
     }
 
-    private void giveCards() {
+    public int countPlayers() {
+        return players.size();
+    }
+
+    public void giveCards() {
         for (int i = 0; i < 6; i++) {
             for (var p : players) {
-                var newCard = deck.takeCard();
-                var cards = p.getCards();
-                cards.add(newCard);
-                p.setCards(cards);
+                p.addCard(deck.takeCard());
             }
         }
     }
