@@ -1,4 +1,4 @@
-package server.services;
+package server.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

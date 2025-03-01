@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import server.models.Card;
-
 import java.util.LinkedList;
 import java.util.List;
 

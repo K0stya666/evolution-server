@@ -8,8 +8,6 @@ import server.enums.Stage;
 import server.enums.Status;
 
 @Builder
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,8 +35,6 @@ public class Game {
     @Column(nullable = false)
     private Status status;
 
-
-    @Getter
     @Transient
     @JsonIgnore
     private Battle battle;

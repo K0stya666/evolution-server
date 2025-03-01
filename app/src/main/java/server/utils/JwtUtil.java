@@ -22,7 +22,7 @@ public class JwtUtil {
 
     private static final String SECRET_KEY = "MySuperSecretKeyThatIsLongEnoughToMeetHS256Requirements";
     public static final String TOKEN_HEADER_NAME = "Authorization";
-    public static final String PREFIX = "Bearer ";
+    public static final String PREFIX = "Bea    rer ";
     private static final long EXPIRATION_MS = 86400000;
 
     public String createToken(User user) {

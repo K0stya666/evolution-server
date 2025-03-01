@@ -1,4 +1,4 @@
-package server.services;
+package server.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import server.repositories.UserRepository;
 import server.services.interfaces.GameService;
 import java.util.List;
 import java.util.Optional;
-import static server.enums.Stage.GROWTH;
+import static server.enums.Stage.DEVELOPMENT;
 import static server.enums.Status.STARTED;
 import static server.enums.Status.WAITING;
 
@@ -45,7 +45,7 @@ public class GameServiceImpl implements GameService {
         deckService.shuffleDeck();
 
         Game newGame = Game.builder()
-                .stage(GROWTH)
+                .stage(DEVELOPMENT)
                 .maxPlayers(maxPlayers)
                 .creatorId(creatorUserId)
                 .maxPlayers(maxPlayers)
@@ -67,13 +67,11 @@ public class GameServiceImpl implements GameService {
     // Присоединение к игре
     @Override
     public Optional<Game> joinGame(Long gameId, Long userId) {
-        Optional<Game> gameOpt = gameRepository.findById(gameId);
+        Game game = gameRepository.findById(gameId).get();
         User user = userRepository.findById(userId).get();
 
-        playerService.createPlayer(gameOpt.get(), user);
+        playerService.createPlayer(game, user);
 
-
-        Game game = gameOpt.get();
         // Можно присоединиться, если игра ожидает игроков и еще не заполнена
         if (game.getCurrentPlayers() < game.getMaxPlayers() && game.getStatus().equals(WAITING)) {
             game.setCurrentPlayers(game.getCurrentPlayers() + 1);

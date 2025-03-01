@@ -1,4 +1,4 @@
-package server.services;
+package server.services.impl;
 
 import lombok.Data;
 import org.springframework.stereotype.Service;

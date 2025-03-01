@@ -9,8 +9,8 @@ import java.util.LinkedList;
 
 @Getter
 public class Battle {
-    private Deck deck;
-    private LinkedList<Player> players;
+    private final Deck deck;
+    private final LinkedList<Player> players;
 
     public Battle() {
         this.deck = new Deck();
@@ -101,17 +101,4 @@ public class Battle {
             addCards();
         }
     }
-
-//    public static void main(String[] args) {
-//        Deck deck = new Deck();
-//        Battle game = new Battle(deck);
-////        game.addPlayer(new Player(1L, "Aleshka"));
-////        game.addPlayer(new Player(2L, "Kostya666"));
-//
-//        game.startGame();
-//    }
-
-
-
-
 }

@@ -21,7 +21,6 @@ import java.util.List;
 @Controller
 public class GameWebSocketController {
     private final GameService gameService;
-    private final UserService userService;
 
     @MessageMapping("/games/createGame")
     @SendTo("/topic/games")

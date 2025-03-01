@@ -1,4 +1,4 @@
-package server.services;
+package server.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

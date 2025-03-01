@@ -1,8 +1,11 @@
 package server.enums;
 
+/**
+ * Enum стадия развития (возможно придется удалить)
+ **/
 public enum Stage {
-    GROWTH,             // развитие
+    DEVELOPMENT,             // развитие
     FOOD_CALCULATION,   // определение кормовой базы
-    FEEDING,            // питание
-    EXTINCTION          // вымирание
+    FEED,            // питание
+    IWD          // вымирание
 }
