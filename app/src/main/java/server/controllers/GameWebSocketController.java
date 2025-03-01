@@ -22,6 +22,15 @@ import java.util.List;
 public class GameWebSocketController {
     private final GameService gameService;
 
+    @MessageMapping("/games/fetchGames")
+    @SendToUser("/queue/fetchGamesResponse")
+    public List<Game> fetchGames(Principal principal) {
+        if ("anonymous".equals(principal.getName()))
+            throw new RuntimeException("User must be logged in to fetch games");
+
+        return gameService.getAvailableGames();
+    }
+
     @MessageMapping("/games/createGame")
     @SendTo("/topic/games")
     public Game createGame(@Payload int maxPlayers, Principal principal) {
