@@ -12,21 +12,21 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 @RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
-//    private WebSocketAuthInterceptor webSocketAuthInterceptor;
-    private final StompChannelInterceptor stompChannelInterceptor;
+    private HttpHandshakeInterceptor httpHandshakeInterceptor;
+//    private final StompChannelInterceptor stompChannelInterceptor;
 
-    @Override
-    public void configureClientInboundChannel(ChannelRegistration registration) {
-        registration.interceptors(stompChannelInterceptor);
-    }
+//    @Override
+//    public void configureClientInboundChannel(ChannelRegistration registration) {
+//        registration.interceptors(stompChannelInterceptor);
+//    }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry
             .addEndpoint("/ws") // URL WebSocket-соединения
             .setAllowedOriginPatterns("*") // Разрешаем подключения со всех доменов
-//            .addInterceptors(new HttpHandshakeInterceptor())
-            .withSockJS(); // Поддержка SockJS (для совместимости со старыми браузерами)
+            .addInterceptors(httpHandshakeInterceptor);
+//            .withSockJS(); // Поддержка SockJS (для совместимости со старыми браузерами)
     }
 
     @Override

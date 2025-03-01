@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/evolution_db
-    username: postgres
-    password: admin
+    username: ren1kron
+    password: ren1kron
     driver-class-name: org.postgresql.Driver
 
   jpa:

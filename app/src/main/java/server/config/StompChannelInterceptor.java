@@ -33,17 +33,16 @@ public class StompChannelInterceptor implements ChannelInterceptor {
             //  - Перейти на реализацию с читыми веб сокетами, без SockJS b c HttpHandshakeInterceptor'ом (там закоменчена реализация для чистых веб сокетов). Но тогда и на фронте реализаця немного поменятеся
 
             if (token == null) {
-//                // 2) Extract token from SockJS "Sec-WebSocket-Protocol" header
-//                String query = accessor.getFirstNativeHeader("Sec-WebSocket-Protocol");
-//                log.info("log query: {}", query);
-//                token = extractTokenFromQuery(query);
-//                log.info("Extracted token: {}", token);
+                // 2) Extract token from SockJS "Sec-WebSocket-Protocol" header
+                String query = accessor.getFirstNativeHeader("Sec-WebSocket-Protocol");
+                log.info("log query: {}", query);
+                token = extractTokenFromQuery(query);
 
-                // 2) Fall back to handshake attribute: "myToken"
-                Object rawToken = accessor.getSessionAttributes().get("myToken");
-                if (rawToken != null) {
-                    token = "Bearer " + rawToken; // if your server expects 'Bearer ' prefix
-                }
+//                // 2) Fall back to handshake attribute: "myToken"
+//                Object rawToken = accessor.getSessionAttributes().get("myToken");
+//                if (rawToken != null) {
+//                    token = "Bearer " + rawToken; // if your server expects 'Bearer ' prefix
+//                }
             }
 
 
@@ -67,10 +66,12 @@ public class StompChannelInterceptor implements ChannelInterceptor {
 
     // Helper function to extract token from query string
     private String extractTokenFromQuery(String query) {
-        log.info("Enter extractToken...");
+        log.info("Enter extractToken... {}", query);
         if (query != null && query.contains("token=")) {
-            log.info("Found token...");
-            return query.split("token=")[1].split("&")[0]; // Extracts token from query
+            log.info("Found token in query {}...", query);
+            String extractedToken = query.split("token=")[1].split("&")[0]; // Extracts token from query
+            log.info("Extracted token: {}", extractedToken);
+            return extractedToken;
         }
         return null;
     }
